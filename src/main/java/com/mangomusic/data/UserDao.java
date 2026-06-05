@@ -30,8 +30,10 @@ public class UserDao {
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-                statement.setString(1, "%" + username + "%");
-                statement.setString(1, "%" + username + "%");
+                String searchPattern = "%" + username + "%";
+
+                statement.setString(1, searchPattern);
+                statement.setString(2, searchPattern);
 
                 try (ResultSet results = statement.executeQuery()) {
                     while (results.next()) {
